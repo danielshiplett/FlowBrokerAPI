@@ -34,7 +34,29 @@
     "/v1/flows/{flowId}": {
       "get": {
         "summary": "Get a flow by ID",
-        "description": "Get the flow that is identified by the UUID {flowId}."
+        "description": "Get the flow that is identified by the UUID {flowId}.",
+        "responses": {
+          "200": {
+            "description": "The requests flow is returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemasFlow"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The flow identifid by {flowId} was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemasErrorMessage"
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "summary": "Create a new flow",
@@ -51,7 +73,14 @@
             }
           },
           "409": {
-            "description": "The flow identified by {flowId} already exists."
+            "description": "The flow identified by {flowId} already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemasErrorMessage"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -161,6 +190,14 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        }
+      },
+      "ErrorMessage": {
+        "properties": {
+          "Message": {
+            "description": "The error message.",
+            "type": "string"
           }
         }
       }
