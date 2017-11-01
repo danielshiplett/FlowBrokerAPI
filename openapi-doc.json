@@ -24,5 +24,79 @@
         }
       ]
     }
+  },
+  "components": {
+    "schemas": {
+      "Flow": {
+        "properties": {
+          "ShortName": {
+            "type": "string"
+          },
+          "LongName": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "Nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Node"
+            }
+          },
+          "Connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connection"
+            }
+          }
+        }
+      },
+      "Connection": {
+        "properties": {
+          "OutputNode": {
+            "type": "integer"
+          },
+          "InputNode": {
+            "type": "integer"
+          }
+        }
+      },
+      "Parameter": {
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      },
+      "Node": {
+        "properties": {
+          "ShortName": {
+            "type": "string"
+          },
+          "LongName": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      }
+    }
   }
 }
