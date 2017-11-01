@@ -7,12 +7,69 @@
   },
   "paths": {
     "/v1/flows": {
-      "get": {},
-      "post": {}
+      "get": {
+        "summary": "Get flows",
+        "description": "Get a list of all flow currently deployed by this broker.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Flow"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
     },
     "/v1/flows/{flowId}": {
-      "get": {},
-      "delete": {},
+      "get": {
+        "summary": "Get a flow by ID",
+        "description": "Get the flow that is identified by the UUID {flowId}."
+      },
+      "put": {
+        "summary": "Create a new flow",
+        "description": "Create a new flow.  The {flowID} specified should be a valid UUID and unique.  If specified in the request body, the ID in the body should match the {flowId}.",
+        "responses": {
+          "201": {
+            "description": "The requested flow was created.  The complete flow is returned as the response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemasFlow"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The flow identified by {flowId} already exists."
+          }
+        },
+        "requestBody": {
+          "description": "The flow that should be created.  The Id field is option, but if specified, should match the {flowId} path parameter.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemasFlow"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a flow by ID",
+        "description": "Delete the flow that is identified by the UUID {flowId}."
+      },
       "parameters": [
         {
           "name": "flowId",
@@ -30,31 +87,41 @@
       "Flow": {
         "properties": {
           "ShortName": {
+            "description": "A short display name for the flow.",
             "type": "string"
           },
           "LongName": {
+            "description": "A long display name for the flow.",
             "type": "string"
           },
           "Description": {
+            "description": "A description of the flow.",
             "type": "string"
           },
           "Parameters": {
+            "description": "A list of parameters for the flow.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
           },
           "Nodes": {
+            "description": "A list of nodes in the flow.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Node"
             }
           },
           "Connections": {
+            "description": "A list of connections between nodes in the flow.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connection"
             }
+          },
+          "Id": {
+            "description": "An UUID that identifies the flow.",
+            "type": "string"
           }
         }
       },
