@@ -41,7 +41,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemasFlow"
+                  "$ref": "#/components/schemas/Flow"
                 }
               }
             }
@@ -51,7 +51,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemasErrorMessage"
+                  "$ref": "#/components/schemas/ErrorMessage"
                 }
               }
             }
@@ -67,7 +67,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemasFlow"
+                  "$ref": "#/components/schemas/Flow"
                 }
               }
             }
@@ -77,7 +77,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemasErrorMessage"
+                  "$ref": "#/components/schemas/ErrorMessage"
                 }
               }
             }
@@ -88,7 +88,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemasFlow"
+                "$ref": "#/components/schemas/Flow"
               }
             }
           },
